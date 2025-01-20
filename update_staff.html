@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Attendance System</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4;">
+
+    <div style="width: 80%; margin: 30px auto; background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);">
+        <h2 style="text-align: center; color: #3498db;">Edit Profile</h2>
+
+        <form style="display: flex; flex-direction: column; gap: 15px;">
+            
+            
+            
+
+            <!-- Basic Information -->
+            <div style="font-size: 18px; font-weight: bold; margin-bottom: 10px;">Basic Information</div>
+			<div>
+			<!-- Employee ID (Hidden) -->
+    <label for="emp-id" style="font-size: 16px; font-weight: bold;">Employee ID</label>
+    <input type="text" id="emp-id" name="emp-id" value="12345" readonly style="padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px; width: 100%; box-sizing: border-box; background-color: #f0f0f0;">
+</div>
+
+            <!-- Employee Name -->
+            <div style="display: flex; flex-direction: column;">
+                <label for="emp-name" style="font-size: 16px; font-weight: bold;"> Name <span style="color: red;">*</span></label>
+                <input type="text" id="emp-name" name="emp-name" value="Sai" required style="padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px; width: 100%; box-sizing: border-box;">
+            </div>
+
+            <!-- Father's Name -->
+            <div style="display: flex; flex-direction: column;">
+                <label for="father-name" style="font-size: 16px; font-weight: bold;">Father's Name <span style="color: red;">*</span></label>
+                <input type="text" id="father-name" name="father-name" value="Bhaskar" required style="padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px; width: 100%; box-sizing: border-box;">
+            </div>
+
+            <!-- Mobile Number -->
+            <div style="display: flex; flex-direction: column;">
+                <label for="mobile" style="font-size: 16px; font-weight: bold;">Mobile Number <span style="color: red;">*</span></label>
+                <input type="text" id="mobile" name="mobile" value="9505378801" required style="padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px; width: 100%; box-sizing: border-box;">
+            </div>
+
+            <!-- Optional Fields -->
+            <div style="font-size: 18px; font-weight: bold; margin-top: 20px;">Optional Information</div>
+
+            <!-- Employee Photo -->
+            <div style="display: flex; flex-direction: column;">
+                <label for="emp-photo" style="font-size: 16px; font-weight: bold;">Photo</label>
+                <input type="file" id="emp-photo" name="emp-photo" style="padding: 5px; border: 1px solid #ccc; border-radius: 5px; cursor: pointer;">
+            </div>
+
+            <!-- Aadhar Card Number -->
+            <div style="display: flex; flex-direction: column;">
+                <label for="aadhar" style="font-size: 16px; font-weight: bold;">Aadhar Card Number</label>
+                <input type="text" id="aadhar" name="aadhar" style="padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px; width: 100%; box-sizing: border-box;">
+            </div>
+
+            <!-- Date of Birth -->
+            <div style="display: flex; flex-direction: column;">
+                <label for="dob" style="font-size: 16px; font-weight: bold;">Date of Birth</label>
+                <input type="date" id="dob" name="dob" style="padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px; width: 100%; box-sizing: border-box;">
+            </div>
+
+            <!-- Gender -->
+            <div style="display: flex; flex-direction: column;">
+                <label for="gender" style="font-size: 16px; font-weight: bold;">Gender</label>
+                <select id="gender" name="gender" style="padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px; width: 100%; box-sizing: border-box;">
+                    <option value="Male" selected>Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+
+            <!-- Email ID -->
+            <div style="display: flex; flex-direction: column;">
+                <label for="email" style="font-size: 16px; font-weight: bold;">Email ID</label>
+                <input type="email" id="email" name="email" style="padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px; width: 100%; box-sizing: border-box;">
+            </div>
+
+            <!-- Address -->
+            <div style="display: flex; flex-direction: column;">
+                <label for="address" style="font-size: 16px; font-weight: bold;">Address</label>
+                <input type="text" id="address" name="address" style="padding: 10px; font-size: 14px; border: 1px solid #ccc; border-radius: 5px; width: 100%; box-sizing: border-box;">
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" style="background-color: #3498db; color: white; padding: 12px; font-size: 16px; border: none; border-radius: 5px; cursor: pointer; transition: background-color 0.3s;">
+                Save Changes
+            </button>
+        </form>
+    </div>
+
+</body>
+</html>

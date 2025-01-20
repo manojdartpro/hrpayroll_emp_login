@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Attendance System</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4;">
+
+    <div style="width: 80%; margin: 20px auto; background-color: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+        <h2 style="text-align: center;">Employee Attendance</h2>
+
+        <div style="margin-bottom: 20px; text-align: center;" class="search-section">
+            <!-- Date input enabled for user selection -->
+            <input type="date" id="attendance-date" name="attendance-date" style="padding: 10px; font-size: 16px; margin: 10px;">
+            <button onclick="searchAttendance()" style="padding: 10px; font-size: 16px; margin: 10px; background-color: #3498db; color: white; border: none; border-radius: 5px;">Search</button>
+        </div>
+
+        <div id="attendance-data" style="display: grid; grid-template-columns: repeat(2, 1fr); grid-gap: 10px; padding: 10px; background-color: #ecf0f1; border-radius: 5px;">
+            <!-- Dynamic Content Will Be Inserted Here -->
+        </div>
+    </div>
+
+    <script>
+        // Automatically load attendance data for the current date
+        window.onload = function() {
+            const today = new Date();
+            const yyyy = today.getFullYear();
+            let mm = today.getMonth() + 1; // Months are zero-based
+            let dd = today.getDate();
+
+            // Format date to yyyy-mm-dd
+            if (mm < 10) mm = '0' + mm;
+            if (dd < 10) dd = '0' + dd;
+            const currentDate = yyyy + '-' + mm + '-' + dd;
+
+            // Set the input date field to today's date
+            document.getElementById('attendance-date').value = currentDate;
+
+            // Call the searchAttendance function with the current date
+            searchAttendance(currentDate);
+        };
+
+        function searchAttendance() {
+            const selectedDate = document.getElementById('attendance-date').value;
+            
+            // Sample attendance data (for testing purposes)
+            const attendanceData = [
+                {
+                    date: '2025-01-20',
+                    day: 'Monday',
+                    checkIn: '09:00 AM',
+                    checkOut: '06:00 PM',
+                    breakTime: '01:00 PM - 01:30 PM',
+                    workingHours: '8 Hours',
+                    otHours: '0 Hours',
+                    lateHours: '0 Hours',
+                    earlyLeave: '0 Hours',
+                    status: 'Present',
+                    statusReason: 'N/A'
+                },
+                {
+                    date: '2024-12-29',
+                    day: 'Sunday',
+                    checkIn: '10:00 AM',
+                    checkOut: '05:00 PM',
+                    breakTime: '12:30 PM - 01:00 PM',
+                    workingHours: '7 Hours',
+                    otHours: '0 Hours',
+                    lateHours: '0 Hours',
+                    earlyLeave: '0 Hours',
+                    status: 'Present',
+                    statusReason: 'N/A'
+                }
+            ];
+
+            // Filter data by selected date
+            const filteredData = attendanceData.filter(item => item.date === selectedDate);
+            const grid = document.getElementById('attendance-data');
+
+            // Clear previous data
+            grid.innerHTML = '';
+
+            // If no data found
+            if (filteredData.length === 0) {
+                grid.innerHTML = `<div style="grid-column: span 2; text-align: center;">No attendance data found for ${selectedDate}</div>`;
+                return;
+            }
+
+            // Populate the grid with filtered data
+            filteredData.forEach(item => {
+                const dataArray = [
+                    { label: 'Date', value: item.date },
+                    { label: 'Day', value: item.day },
+                    { label: 'Check-in Time', value: item.checkIn },
+                    { label: 'Check-out Time', value: item.checkOut },
+                    { label: 'Break Time', value: item.breakTime },
+                    { label: 'Working Hours', value: item.workingHours },
+                    { label: 'OT Hours', value: item.otHours },
+                    { label: 'Late Hours', value: item.lateHours },
+                    { label: 'Early Leave Hours', value: item.earlyLeave },
+                    { label: 'Status', value: item.status },
+                    { label: 'Status Reason', value: item.statusReason },
+                ];
+
+                dataArray.forEach(data => {
+                    const div = document.createElement('div');
+                    div.className = data.label === 'Status' ? item.status.toLowerCase() : ''; // Apply status color class
+                    div.style.padding = '10px';
+                    div.style.border = '1px solid #ddd';
+                    div.style.textAlign = 'center';
+                    div.style.backgroundColor = '#ffffff';
+                    div.style.borderRadius = '5px';
+                    div.innerHTML = `<strong>${data.label}</strong>: ${data.value}`;
+                    grid.appendChild(div);
+                });
+            });
+        }
+    </script>
+
+    <style>
+        /* Color Codes for Status */
+        .present {
+            background-color: #2ecc71; /* Green */
+            color: green;
+        }
+
+        .absent {
+            background-color: #e74c3c; /* Red */
+            color: white;
+        }
+
+        .late {
+            background-color: #f39c12; /* Yellow */
+            color: white;
+        }
+
+        .early-leave {
+            background-color: #3498db; /* Blue */
+            color: white;
+        }
+
+        .holiday {
+            background-color: #f1c40f; /* Golden */
+            color: black;
+        }
+
+        /* Mobile View Grid */
+        @media screen and (max-width: 768px) {
+            #attendance-data {
+                grid-template-columns: 1fr 1fr; /* 2 columns layout for smaller screens */
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            #attendance-data {
+                grid-template-columns: 1fr; /* 1 column layout for very small screens */
+            }
+
+            .search-section input,
+            .search-section button {
+                width: 100%;
+                margin: 5px 0;
+                font-size: 14px;
+            }
+        }
+    </style>
+
+</body>
+</html>

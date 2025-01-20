@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Attendance System</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4;">
+   <div style="width: 80%; margin: 20px auto; padding: 20px; background-color: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+        <h1 style="text-align: center; color: #333;">Monthly Attendance</h1>
+
+        <!-- Dropdown for Year and Month Selection -->
+        <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+            <select id="year" name="year" style="padding: 10px; font-size: 16px; margin: 0 10px; border: 1px solid #ccc; border-radius: 5px;">
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+            </select>
+
+            <select id="month" name="month" style="padding: 10px; font-size: 16px; margin: 0 10px; border: 1px solid #ccc; border-radius: 5px;">
+                <option value="1">January</option>
+                <option value="2">February</option>
+                <option value="3">March</option>
+                <option value="4">April</option>
+                <option value="5">May</option>
+                <option value="6">June</option>
+                <option value="7">July</option>
+                <option value="8">August</option>
+                <option value="9">September</option>
+                <option value="10">October</option>
+                <option value="11">November</option>
+                <option value="12">December</option>
+            </select>
+        </div>
+
+        <!-- Search Button -->
+        <div style="text-align: center; margin-bottom: 20px;">
+            <button onclick="searchAttendance()" style="padding: 10px 20px; font-size: 16px; background-color: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">Search Attendance</button>
+        </div>
+  
+    </div>
+	 <div style="width: 80%; margin: 20px auto; padding: 20px; background-color: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+        <h1 style="text-align: center; color: #333;">Monthly Attendance</h1>
+
+        <!-- Attendance Data Table 1 -->
+        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            <thead>
+                <tr>
+                    <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd; background-color: #f8f8f8;">Present</th>
+                    <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd; background-color: #f8f8f8;">Absent</th>
+                    <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd; background-color: #f8f8f8;">HD</th>
+                    <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd; background-color: #f8f8f8;">WO</th>
+                    <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd; background-color: #f8f8f8;">HL</th>
+                    <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd; background-color: #f8f8f8;">Paid Days</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">19</td>
+                    <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">0</td>
+                    <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">0</td>
+                    <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">4</td>
+                    <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">7</td>
+                    <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">0</td>
+                   
+                </tr>
+            </tbody>
+        </table>
+		
+        <!-- Attendance Data Table 2 -->
+        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            <thead>
+                <tr>
+                   
+                    <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd; background-color: #f8f8f8;">paid LV</th>
+                    <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd; background-color: #f8f8f8;">paid LV</th>
+                    <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd; background-color: #f8f8f8;">Late Hrs</th>
+                    <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd; background-color: #f8f8f8;">Early Hrs</th>
+                    <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd; background-color: #f8f8f8;">Work Hrs</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                   
+                   
+                    <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">0</td>
+                    <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">11</td>
+                    <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">0:0</td>
+                    <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">0:0</td>
+                    <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;"></td>
+                   
+                </tr>
+            </tbody>
+        </table>
+		
+        <!-- Attendance Data Table 3 -->
+        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            <thead>
+                <tr>
+                    
+                    <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd; background-color: #f8f8f8;">OverTime</th>
+                    <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd; background-color: #f8f8f8;">Leave Bal</th>
+                    <th style="padding: 10px; text-align: left; border-bottom: 2px solid #ddd; background-color: #f8f8f8;">No. of Late Deductions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    
+                    <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">0:0</td>
+                    <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">98564</td>
+                    <td style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd;">0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="width: 80%; margin: 20px auto; padding: 20px; background-color: white; border-radius: 8px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+        <h1 style="text-align: center; color: #333;">Monthly Attendance</h1>
+
+       
+
+        <!-- Attendance Status Key -->
+        <div style="display: flex; justify-content: space-around; margin-bottom: 20px;">
+            <div style="text-align: center;">
+                <div style="width: 12px; height: 12px; background-color: green; border-radius: 50%; margin-bottom: 5px;"></div>
+                <span>Present</span>
+            </div>
+            <div style="text-align: center;">
+                <div style="width: 12px; height: 12px; background-color: red; border-radius: 50%; margin-bottom: 5px;"></div>
+                <span>Absent</span>
+            </div>
+            <div style="text-align: center;">
+                <div style="width: 12px; height: 12px; background-color: yellow; border-radius: 50%; margin-bottom: 5px;"></div>
+                <span>Half Day</span>
+            </div>
+            <div style="text-align: center;">
+                <div style="width: 12px; height: 12px; background-color: blue; border-radius: 50%; margin-bottom: 5px;"></div>
+                <span>Holiday</span>
+            </div>
+        </div>
+
+        <!-- Attendance Grid -->
+        <div>
+            <!-- Weekdays Titles -->
+            <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px; font-size: 16px; text-align: center; margin-bottom: 10px;">
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+            </div>
+
+            <!-- Dates and Dots Grid -->
+            <div style="display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; grid-auto-rows: 50px; justify-items: center;">
+                <div style="text-align: center; font-size: 14px; font-weight: bold; padding: 5px; cursor: pointer;" onclick="openAttendanceDetail(1)">
+                    <div>1</div>
+                    <div style="width: 8px; height: 8px; background-color: green; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+                <div style="text-align: center; font-size: 14px; font-weight: bold; padding: 5px; cursor: pointer;" onclick="openAttendanceDetail(2)">
+                    <div>2</div>
+                    <div style="width: 8px; height: 8px; background-color: red; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+                <div style="text-align: center; font-size: 14px; font-weight: bold; padding: 5px; cursor: pointer;" onclick="openAttendanceDetail(3)">
+                    <div>3</div>
+                    <div style="width: 8px; height: 8px; background-color: yellow; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+				 <div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(3)">
+                    <div>03</div>
+                    <div style="width: 8px; height: 8px; background-color: yellow; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+                <div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(4)">
+                    <div>04</div>
+                    <div style="width: 8px; height: 8px; background-color: green; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+                <div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(5)">
+                    <div>05</div>
+                    <div style="width: 8px; height: 8px; background-color: red; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+                <div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(6)">
+                    <div>06</div>
+                    <div style="width: 8px; height: 8px; background-color: yellow; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+                <div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(7)">
+                    <div>07</div>
+                    <div style="width: 8px; height: 8px; background-color: green; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+                <div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(8)">
+                    <div>08</div>
+                    <div style="width: 8px; height: 8px; background-color: red; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+                <div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(9)">
+                    <div>09</div>
+                    <div style="width: 8px; height: 8px; background-color: yellow; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+                <div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(10)">
+                    <div>10</div>
+                    <div style="width: 8px; height: 8px; background-color: green; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+				<div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(10)">
+                    <div>11</div>
+                    <div style="width: 8px; height: 8px; background-color: green; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+				<div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(10)">
+                    <div>12</div>
+                    <div style="width: 8px; height: 8px; background-color: green; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+				<div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(10)">
+                    <div>13</div>
+                    <div style="width: 8px; height: 8px; background-color: green; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+				<div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(10)">
+                    <div>14</div>
+                    <div style="width: 8px; height: 8px; background-color: green; border-radius: 50%; margin-top: 5px;"></div>
+                </div><div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(10)">
+                    <div>15</div>
+                    <div style="width: 8px; height: 8px; background-color: green; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+				<div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(10)">
+                    <div>16</div>
+                    <div style="width: 8px; height: 8px; background-color: green; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+				<div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(10)">
+                    <div>17</div>
+                    <div style="width: 8px; height: 8px; background-color: green; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+				<div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(10)">
+                    <div>18</div>
+                    <div style="width: 8px; height: 8px; background-color: green; border-radius: 50%; margin-top: 5px;"></div>
+                </div><div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(10)">
+                    <div>19</div>
+                    <div style="width: 8px; height: 8px; background-color: green; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+				<div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(10)">
+                    <div>20</div>
+                    <div style="width: 8px; height: 8px; background-color: green; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+				<div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(10)">
+                    <div>21</div>
+                    <div style="width: 8px; height: 8px; background-color: green; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+				<div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(10)">
+                    <div>22</div>
+                    <div style="width: 8px; height: 8px; background-color: green; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+				<div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(10)">
+                    <div>23</div>
+                    <div style="width: 8px; height: 8px; background-color: green; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+				<div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(10)">
+                    <div>24</div>
+                    <div style="width: 8px; height: 8px; background-color: green; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+				<div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(10)">
+                    <div>25</div>
+                    <div style="width: 8px; height: 8px; background-color: green; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+				<div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(10)">
+                    <div>26</div>
+                    <div style="width: 8px; height: 8px; background-color: green; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+				<div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(10)">
+                    <div>27</div>
+                    <div style="width: 8px; height: 8px; background-color: green; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+				<div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(10)">
+                    <div>28</div>
+                    <div style="width: 8px; height: 8px; background-color: green; border-radius: 50%; margin-top: 5px;"></div>
+                </div><div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(10)">
+                    <div>29</div>
+                    <div style="width: 8px; height: 8px; background-color: green; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+				<div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(10)">
+                    <div>30</div>
+                    <div style="width: 8px; height: 8px; background-color: green; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+				<div style="text-align: center; font-size: 14px; font-weight: bold; cursor: pointer; padding: 5px;" onclick="openAttendanceDetail(10)">
+                    <div>31</div>
+                    <div style="width: 8px; height: 8px; background-color: green; border-radius: 50%; margin-top: 5px;"></div>
+                </div>
+				
+                <!-- Add other days as needed -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function searchAttendance() {
+            alert('Search functionality not implemented yet.');
+        }
+
+        function openAttendanceDetail(day) {
+    // Replace 'dailyAttendance.html' with your actual daily attendance page URL
+    const url = 'dailyAttendance.html?day=' + day;
+    window.location.href = url;
+}
+    </script>
+</body>
+</html>

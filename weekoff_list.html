@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Attendance System</title>
+  <style>
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      .weekoff-card {
+        font-size: 12px;
+        padding: 10px;
+      }
+    }
+    /* Styling for the Week Off cards */
+    .weekoff-card {
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background-color: #fff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      margin-bottom: 15px; /* Add space between the cards */
+    }
+
+    /* Container for the week off cards */
+    .weekoff-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px; /* Add space between cards */
+    }
+  </style>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f9f9f9;">
+
+  <!-- Search Section -->
+  <div class="search-section" style="margin-bottom: 20px; text-align: center;">
+    <!-- Year Dropdown -->
+    <select id="year" style="padding: 10px; font-size: 16px; margin: 10px;">
+      <option value="2024">2024</option>
+      <option value="2025">2025</option>
+      <option value="2026">2026</option>
+    </select>
+
+    <!-- Month Dropdown -->
+    <select id="month" style="padding: 10px; font-size: 16px; margin: 10px;">
+      <option value="1">January</option>
+      <option value="2">February</option>
+      <option value="3">March</option>
+      <option value="4">April</option>
+      <option value="5">May</option>
+      <option value="6">June</option>
+      <option value="7">July</option>
+      <option value="8">August</option>
+      <option value="9">September</option>
+      <option value="10">October</option>
+      <option value="11">November</option>
+      <option value="12">December</option>
+    </select>
+
+    <!-- Search Button -->
+    <button onclick="searchWeekOffs()" style="padding: 10px; font-size: 16px; margin: 10px; background-color: #3498db; color: white; border: none; border-radius: 5px;">Search</button>
+  </div>
+
+  <!-- Week Offs Grid Section -->
+  <div class="weekoff-list" id="weekoff-list" style="margin-top: 20px; padding: 20px;">
+    <!-- Week Off cards will be dynamically inserted here -->
+  </div>
+
+  <script>
+    // Function to get all Saturdays and Sundays for the selected month and year
+    function getWeekOffs(month, year) {
+      const weekOffs = [];
+      const firstDay = new Date(year, month - 1, 1);
+      const lastDay = new Date(year, month, 0); // Last day of the month
+      const daysInMonth = lastDay.getDate();
+
+      for (let day = 1; day <= daysInMonth; day++) {
+        const currentDate = new Date(year, month - 1, day);
+        const dayOfWeek = currentDate.getDay(); // 0 = Sunday, 6 = Saturday
+
+        if (dayOfWeek === 0 || dayOfWeek === 6) { // 0 = Sunday, 6 = Saturday
+          weekOffs.push({
+            day: dayOfWeek === 0 ? 'Sunday' : 'Saturday',
+            date: `${year}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`
+          });
+        }
+      }
+
+      return weekOffs;
+    }
+
+    // Function to display week offs
+    function displayWeekOffs(weekOffs) {
+      const weekOffList = document.getElementById('weekoff-list');
+      weekOffList.innerHTML = ""; // Clear previous week offs
+
+      if (weekOffs.length === 0) {
+        weekOffList.innerHTML = `<p>No week offs found for this month.</p>`;
+        return;
+      }
+
+      weekOffs.forEach(weekOff => {
+        const weekOffCard = document.createElement('div');
+        weekOffCard.classList.add('weekoff-card');
+        
+        weekOffCard.innerHTML = `
+          <h3 style="margin: 10px 0; font-size: 1.2rem; color: #333;">${weekOff.day}</h3>
+          <p style="margin: 5px 0; color: #555; font-size: 14px;"><strong>Date:</strong> ${weekOff.date}</p>
+        `;
+        weekOffList.appendChild(weekOffCard);
+      });
+    }
+
+    // Function to search week offs based on selected month and year
+    function searchWeekOffs() {
+      const month = parseInt(document.getElementById('month').value);
+      const year = parseInt(document.getElementById('year').value);
+      const weekOffs = getWeekOffs(month, year);
+      displayWeekOffs(weekOffs);
+    }
+
+    // Automatically search for current month's week offs on page load
+    window.onload = function() {
+      const today = new Date();
+      document.getElementById('month').value = today.getMonth() + 1; // Current month
+      document.getElementById('year').value = today.getFullYear(); // Current year
+      searchWeekOffs(); // Display current month week offs
+    };
+  </script>
+
+</body>
+</html>

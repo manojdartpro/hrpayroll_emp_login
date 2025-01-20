@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Attendance System</title>
+</head>
+<body style="margin: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
+    <header style="background-color: #007bff; color: white; padding: 10px; text-align: center;">
+        <h1 style="margin: 0; font-size: 18px;">Request a Leave</h1>
+    </header>
+    <main style="padding: 10px;">
+        <form style="background-color: white; border-radius: 5px; padding: 15px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); max-width: 500px; margin: 0 auto;">
+            <!-- Leave Type -->
+            <div style="margin-bottom: 15px;">
+                <label for="leaveType" style="display: block; font-size: 14px; font-weight: bold; margin-bottom: 5px;">Select Leave Type</label>
+                <select id="leaveType" name="leaveType" style="width: 95%; padding: 12px; font-size: 14px; border: 1px solid #ddd; border-radius: 5px;">
+                    <option value="sick">Sick Leave</option>
+                    <option value="casual">Casual Leave</option>
+                    <option value="earned">Earned Leave</option>
+                </select>
+            </div>
+            <!-- From Date -->
+            <div style="margin-bottom: 15px;">
+                <label for="fromDate" style="display: block; font-size: 14px; font-weight: bold; margin-bottom: 5px;">From Date</label>
+                <input type="date" id="fromDate" name="fromDate" style="width: 90%; padding: 12px; font-size: 14px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <!-- To Date -->
+            <div style="margin-bottom: 15px;">
+                <label for="toDate" style="display: block; font-size: 14px; font-weight: bold; margin-bottom: 5px;">To Date</label>
+                <input type="date" id="toDate" name="toDate" style="width: 90%; padding: 12px; font-size: 14px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <!-- Reason -->
+            <div style="margin-bottom: 15px;">
+                <label for="reason" style="display: block; font-size: 14px; font-weight: bold; margin-bottom: 5px;">Reason</label>
+                <textarea id="reason" name="reason" rows="4" placeholder="Enter your reason here..." style="width: 90%; padding: 12px; font-size: 14px; border: 1px solid #ddd; border-radius: 5px; resize: none;"></textarea>
+            </div>
+            <!-- Upload -->
+            <div style="margin-bottom: 15px;">
+                <label for="uploadFile" style="display: block; font-size: 14px; font-weight: bold; margin-bottom: 5px;">Upload Document (Optional)</label>
+                <input type="file" id="uploadFile" name="uploadFile" style="width: 90%; padding: 12px; font-size: 14px; border: 1px solid #ddd; border-radius: 5px;">
+            </div>
+            <!-- Submit Button -->
+            <div>
+                <button type="submit" style="width: 100%; background-color: #007bff; color: white; border: none; padding: 12px; font-size: 16px; border-radius: 5px; cursor: pointer;">
+                    Submit
+                </button>
+            </div>
+        </form>
+    </main>
+</body>
+</html>
